@@ -1,4 +1,4 @@
-package com.shop.shoppingMall.domain.member;
+package com.shop.shoppingMall.user.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

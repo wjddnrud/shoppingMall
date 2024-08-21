@@ -1,6 +1,6 @@
 package com.shop.shoppingMall.config.security;
 
-import com.shop.shoppingMall.domain.member.Role;
+import com.shop.shoppingMall.user.enums.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,9 +22,7 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/", "/login/**").permitAll()
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
-                                .requestMatchers("/css/**").permitAll()
-                                .requestMatchers("/js/**").permitAll()
-                                .requestMatchers("/assets/**").permitAll()
+                                .requestMatchers("/resources/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 

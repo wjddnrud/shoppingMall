@@ -1,4 +1,4 @@
-package com.shop.shoppingMall.controller;
+package com.shop.shoppingMall.home.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
