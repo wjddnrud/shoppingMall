@@ -17,6 +17,9 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
         #show_sql: true   -> systemout? ??? ??? ???? ?? ?? ??
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
 logging:
   level:
