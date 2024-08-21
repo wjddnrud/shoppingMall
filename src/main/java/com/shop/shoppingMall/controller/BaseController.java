@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class BaseController {
 
-
     @RequestMapping("/")
     public String home() {
-        log.info("main 페이지 html로 이동");
-        return "main";
+        return "home";
     }
 
 }

@@ -13,7 +13,6 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf((csrfConfig) ->
                         csrfConfig.disable()
@@ -23,6 +22,9 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/", "/login/**").permitAll()
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
+                                .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/js/**").permitAll()
+                                .requestMatchers("/assets/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
