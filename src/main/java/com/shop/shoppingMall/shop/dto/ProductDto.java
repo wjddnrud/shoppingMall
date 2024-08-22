@@ -1,5 +1,6 @@
 package com.shop.shoppingMall.shop.dto;
 
+import com.shop.shoppingMall.shop.entity.ProductEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,4 +15,16 @@ public class ProductDto {
     private int stockQuantity;          // COMMENT :: 재고 수량
     private String description;         // COMMENT :: 설명
     private LocalDateTime regDate;      // COMMENT :: 등록일자
+
+
+    public static ProductDto toDto(ProductEntity productEntity) {
+        ProductDto productDto = new ProductDto();
+        productDto.id = productEntity.getId();
+        productDto.name = productEntity.getName();
+        productDto.price = productEntity.getPrice();
+        productDto.stockQuantity = productEntity.getStockQuantity();
+        productDto.description = productEntity.getDescription();
+        productDto.regDate = productEntity.getRegDate();
+        return productDto;
+    }
 }
