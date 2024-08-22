@@ -18,18 +18,15 @@ public class ProductService {
 
 
     public Long save(ProductDto productDto) {
-
         ProductEntity productEntity = ProductEntity.toEntity(productDto);
-        productRepository.save(productEntity);
-
+        productEntity = productRepository.save(productEntity);
         return productEntity.getId();
     }
 
+    @Transactional(readOnly = true)
     public List<ProductDto> list() {
-
         List<ProductEntity> productEntityList = productRepository.findAll();
         List<ProductDto> productDtoList = productEntityList.stream().map(ProductDto::toDto).toList();
-
         return productDtoList;
     }
 

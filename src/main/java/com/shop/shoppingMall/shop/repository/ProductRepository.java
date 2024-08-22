@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
 
-    Long save(ProductEntity productEntity);
+    ProductEntity save(ProductEntity productEntity);
 
     List<ProductEntity> findAll();
 
