@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +29,12 @@ public class ProductService {
         List<ProductEntity> productEntityList = productRepository.findAll();
         List<ProductDto> productDtoList = productEntityList.stream().map(ProductDto::toDto).toList();
         return productDtoList;
+    }
+
+    public ProductDto findById(Long id) {
+        Optional<ProductEntity> productEntity = productRepository.findById(id);
+        ProductDto productDto = ProductDto.toDto(productEntity.orElse(null));
+        return productDto;
     }
 
 }

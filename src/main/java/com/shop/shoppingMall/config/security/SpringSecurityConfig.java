@@ -21,8 +21,9 @@ public class SpringSecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/", "/login/**").permitAll()
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
-                                .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
+                                .requestMatchers("/posts/**", "/api/v2/posts/**").hasRole(Role.ADMIN.name())
                                 .requestMatchers("/resources/**").permitAll()
+                                .requestMatchers("/shop/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
