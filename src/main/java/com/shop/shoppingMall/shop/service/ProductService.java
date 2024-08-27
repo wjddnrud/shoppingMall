@@ -31,8 +31,9 @@ public class ProductService {
         return productDtoList;
     }
 
-    public ProductDto findById(Long id) {
-        Optional<ProductEntity> productEntity = productRepository.findById(id);
+    @Transactional(readOnly = true)
+    public ProductDto findById(Long productId) {
+        Optional<ProductEntity> productEntity = productRepository.findById(productId);
         ProductDto productDto = ProductDto.toDto(productEntity.orElse(null));
         return productDto;
     }

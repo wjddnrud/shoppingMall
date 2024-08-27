@@ -21,6 +21,12 @@ public class ProductController {
 
 
     // 상품 등록폼
+    @GetMapping("/product/form")
+    public String form() {
+        return "products/form";
+    }
+
+    // 상품 등록
     @PostMapping("/product")
     public String save(ProductDto productDto, Model model) {
         productService.save(productDto);
@@ -36,8 +42,8 @@ public class ProductController {
 
     // 상품 상세
     @GetMapping("/product/{id}")
-    public String findById(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("product", productService.findById(id));
+    public String findById(@PathVariable("id") Long productId, Model model) {
+//        model.addAttribute("product", productService.findById(productId));
         return "products/view";
     }
 
