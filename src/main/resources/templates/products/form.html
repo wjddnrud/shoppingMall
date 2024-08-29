@@ -15,11 +15,11 @@
 <section class="py-5" style="padding: 130px;">
     <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">상품등록</h4>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate th:action="@{/product}" th:object="${product}" method="post">
             <div class="row g-3">
                 <div class="col-12">
                     <label for="productName" class="form-label">상품명</label>
-                    <input type="text" class="form-control" id="productName" placeholder="" value="" required>
+                    <input type="text" th:field="*{name}" class="form-control" id="productName" placeholder="상품명을 입력하세요" value="" required>
                     <div class="invalid-feedback">
                         Valid product name is required.
                     </div>
@@ -27,7 +27,7 @@
 
                 <div class="col-sm-6">
                     <label for="price" class="form-label">가격</label>
-                    <input type="text" class="form-control" id="price" placeholder="" value="" required>
+                    <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="가격을 입력하세요" value="" required>
                     <div class="invalid-feedback">
                         Valid price is required.
                     </div>
@@ -35,7 +35,7 @@
 
                 <div class="col-sm-6">
                     <label for="stockQuantity" class="form-label">수량</label>
-                    <input type="number" class="form-control" id="stockQuantity" placeholder="" value="" required>
+                    <input type="number" th:field="*{stockQuantity}" class="form-control" id="stockQuantity" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         Valid stockQuantity is required.
                     </div>
@@ -43,7 +43,7 @@
 
                 <div class="col-12">
                     <label for="description" class="form-label">설명</label>
-                    <input type="text" class="form-control" id="description" placeholder="" value="">
+                    <input type="text" th:field="*{description}" class="form-control" id="description" placeholder="상품의 설명을 입력하세요" value="">
                 </div>
 
             </div>

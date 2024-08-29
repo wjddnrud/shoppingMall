@@ -19,11 +19,9 @@ public class SpringSecurityConfig {
                 )
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
-                                .requestMatchers("/", "/login/**").permitAll()
+                                .requestMatchers("/", "/login/**", "/static/**", "/product/**").permitAll()
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
                                 .requestMatchers("/posts/**", "/api/v2/posts/**").hasRole(Role.ADMIN.name())
-                                .requestMatchers("/resources/**").permitAll()
-                                .requestMatchers("/shop/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
