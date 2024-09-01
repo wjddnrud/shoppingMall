@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+  <title>Hello</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+
+<form action="/login" method="post">
+  <div>
+    <span>ID : <input type="text" th:field="${loginId}" placeholder="ID를 입력해주세요." /></span>
+  </div>
+  <div style="margin-top: 10px;">
+    <span>PWD : <input type="text" th:field="${password}" placeholder="PASSWORD를 입력해주세요." /></span>
+  </div>
+  <button style="margin-top: 20px;" type="submit">로그인</button>
+</form>
+
+
+
+
+</body>
+</html>

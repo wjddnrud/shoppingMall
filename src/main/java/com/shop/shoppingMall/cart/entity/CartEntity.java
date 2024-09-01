@@ -3,7 +3,8 @@ package com.shop.shoppingMall.cart.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-@Entity(name = "cart")
+@Entity
+@Table(name = "cart")
 @Getter
 public class CartEntity {
 

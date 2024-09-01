@@ -7,7 +7,8 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "product")
+@Entity
+@Table(name = "product")
 @Getter
 public class ProductEntity {
 

@@ -1,6 +1,6 @@
 package com.shop.shoppingMall.config.security;
 
-import com.shop.shoppingMall.user.enums.Role;
+import com.shop.shoppingMall.member.enums.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +23,14 @@ public class SpringSecurityConfig {
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
                                 .requestMatchers("/posts/**", "/api/v2/posts/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated()
+                )
+                .formLogin((formLogin) ->
+                        formLogin
+                                .usernameParameter("Id")
+                                .passwordParameter("password")
+                                .loginPage("/login")
+                                .failureUrl("/login?failed")
+                                .loginProcessingUrl("/login/process")
                 );
 
         return http.build();
