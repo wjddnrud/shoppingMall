@@ -17,7 +17,7 @@ public class MemberController {
     @GetMapping("/login")
     public String loginForm() {
         log.info("===== loginForm =====");
-        return "/login";
+        return "login";
     }
 
     @PostMapping("/login")
