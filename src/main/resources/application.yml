@@ -4,6 +4,11 @@ server:
   port: 8083
 
 spring:
+#  Spring Security 설정
+#  security:
+#    user:
+#      name: user
+#      password: 1234
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mydatabase.clkwweaguf6x.ap-northeast-2.rds.amazonaws.com:3306/mydatabase
