@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+    div {
+        border: 1px solid black;
+    }
+</style>
+<body>
+
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
+
+<div id="contents">
+    <div>
+        <span>공지사항</span>
+        <input type="text" placeholder="검색어 입력">
+        <p>
+            <input id="search" name="search" class="inputTypeText" placeholder="검색어 입력" value="" type="text">
+            <a href="#none" onclick="BOARD.form_submit('boardSearchForm');" class="search_btn"><img src="/static/image/ico_zoom.svg" alt="찾기">
+            </a>
+        </p>
+    </div>
+    <div id="boardList">
+        <table style="margin-left: auto; margin-right: auto; border: 1px solid green; border-collapse: collapse;">
+            <colgroup>
+                <col style="width: 150px;">
+                <col style="width: 150px;">
+                <col style="width: 150px;">
+                <col style="width: 150px;">
+            </colgroup>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일자</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>공지</td>
+                <td>적립금 소멸기준 공지사항</td>
+                <td>정우경</td>
+                <td>2024.11.03</td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr th:each="notice : ${noticeList}">
+                <td th:value="${notice.idx}">번호</td>
+                <td th:text="${notice.title}">제목</td>
+                <td th:text="${notice.writer}">작성자</td>
+                <td th:text="${notice.createTime}">작성일자</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}" />
+
+</body>
+</html>
