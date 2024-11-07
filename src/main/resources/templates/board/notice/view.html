@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<style>
+    .noticeView div {
+        border: 1px solid black;
+        height: 100px;
+        align-content: center;
+    }
+    .noticeView .row {
+        display: flex;
+        align-items: center;
+    }
+</style>
+<body>
+
+<div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
+
+<section class="py-5">
+    <div class="contents">
+        <div class="noticeView" style="margin-left: 10%; margin-right: 10%">
+            <div class="row">
+                <div class="col" style="text-align: left;" th:text="${noticeDto.title}">제목</div>
+            </div>
+            <div class="row">
+                <div class="col-2" style="text-align: center;" th:text="${noticeDto.writer}">작성자</div>
+                <div class="col-2" style="text-align: center;">조회수</div>
+            </div>
+            <div class="row" style="height: 300px;">
+                <div class="col-12" style="height:100%; text-align: center;" th:text="${noticeDto.content}">게시글 내용</div>
+            </div>
+            <div class="row">
+                <div class="col-2" style="text-align: center;">아래화살표</div>
+<!--                <a th:href="@{/board/notice/{idx} (idx=${noticeDto.idx} + 1)}">-->
+                    <div class="col-10" th:text="${noticeDto.idx}">다음글 제목</div>
+<!--                </a>-->
+            </div>
+            <div class="row">
+                <div class="col-6" style="text-align: right;">
+                    <button type="button" class="btn btn-info" style="color: white;">수정</button>
+                </div>
+                <div class="col-6" style="text-align: left;">
+                    <button type="submit" th:href="@{/board/notice/{idx} (idx=${noticeDto.idx})}" class="btn btn-danger" style="color: white;">삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}" />
+
+</body>
+</html>

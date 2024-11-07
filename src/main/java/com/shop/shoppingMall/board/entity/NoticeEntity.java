@@ -1,6 +1,8 @@
 package com.shop.shoppingMall.board.entity;
 
+import com.shop.shoppingMall.board.dto.NoticeDto;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
@@ -20,4 +22,13 @@ public class NoticeEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
+
+    @Builder
+    public void toEntity(NoticeDto noticeDto) {
+        this.idx = noticeDto.getIdx();
+        this.title = noticeDto.getTitle();
+        this.content = noticeDto.getContent();
+        this.writer = noticeDto.getWriter();
+        this.createTime = new Date();
+    }
 }
