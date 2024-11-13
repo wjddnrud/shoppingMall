@@ -46,7 +46,8 @@ public class NoticeController {
      * @return
      */
     @GetMapping("/form")
-    public String noticeForm() {
+    public String noticeForm(Model model) {
+        model.addAttribute("notice", new NoticeDto());
         return "/board/notice/form";
     }
 
@@ -62,16 +63,16 @@ public class NoticeController {
         return "redirect:/board/notice";
     }
 
-    /**
-     * 공지사항 수정
-     * @param noticeDto
-     * @return
-     */
-    @PostMapping("/update")
-    public String noticeUpdate(NoticeDto noticeDto) {
-        noticeService.update(noticeDto);
-        return "";
-    }
+//    /**
+//     * 공지사항 수정
+//     * @param noticeDto
+//     * @return
+//     */
+//    @PostMapping("/update")
+//    public String noticeUpdate(NoticeDto noticeDto) {
+//        noticeService.update(noticeDto);
+//        return "";
+//    }
 
     /**
      * 공지사항 삭제

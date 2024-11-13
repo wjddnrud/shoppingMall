@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -19,7 +20,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // 설명 : 요청되는 모든 URL을 허용하여 Spring에서 제공하는 로그인 페이지가 나오지 않게 한다는 의미.
-        http.authorizeHttpRequests((authorizeRequests) ->
+        http
+                .csrf(AbstractHttpConfigurer::disable
+                )
+                .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
                                 .requestMatchers("/assets", "/js/**", "/css/**", "/image").permitAll()
                                 .requestMatchers("/api1").hasRole(Role.USER.name())

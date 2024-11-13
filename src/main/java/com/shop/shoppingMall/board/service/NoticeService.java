@@ -92,8 +92,6 @@ public class NoticeService {
      */
     @Transactional
     public void delete(Long idx) {
-        log.info("===== delete ======");
-        log.info("===== idx : " + idx);
         noticeRepository.deleteById(idx);
     }
 

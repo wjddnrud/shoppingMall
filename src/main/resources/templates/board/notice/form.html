@@ -3,38 +3,39 @@
 <head th:replace="fragments/header :: header">
     <title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="/css/checkout.css" rel="stylesheet">
 </head>
-<style>
-    div {
-        border: 1px solid black;
-    }
-</style>
 <body>
 
 <div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
 
-<form id="noticeForm" method="post">
-    <div id="contents">
-        <div class="row">
-            <div class="col">
-                <span>제목 : </span>
+<script src="/js/notice/noticeForm.js"></script>
+
+<!-- Section-->
+<section class="py-5" style="padding: 130px;">
+    <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">게시글 등록</h4>
+        <form class="needs-validation" novalidate method="post" th:action="@{/board/notice}" th:object="${notice}">
+            <div class="row g-3">
+
+
+                <div class="col-12">
+                    <label for="noticeTitle" class="form-label">제목</label>
+                    <input type="text" class="form-control" id="noticeTitle" th:field="*{title}" placeholder="제목을 입력하세요" value="" required>
+                    <div class="invalid-feedback">
+                        Valid notice title is required.
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="noticeContent" class="form-label">내용</label>
+                    <textarea rows="1" id="noticeContent" th:field="*{content}" style="width: 100%; resize: none; overflow: hidden; border-radius: 5px; border-color: #ccc; box-sizing: border-box; height: 38px; padding: 4px 0 0 10px;" onkeyup="resize(this)" placeholder="내용을 입력하세요"></textarea>
+                </div>
             </div>
-            <div class="col">
-                <input type="text" placeholder="제목을 입력해주세요.(최대 10글자)" maxlength="10">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <textarea placeholder="내용을 입력해주세요.(최대 30글자)" maxlength="30" />
-            </div>
-        </div>
+            <button class="w-25 btn btn-primary btn-lg mt-5" type="submit">등록</button>
+        </form>
     </div>
-    <div>
-        <button type="submit">등록</button>
-        <button type="reset">초기화</button>
-        <button type="button" onclick="history.back();">취소</button>
-    </div>
-</form>
 </section>
 
 <div th:replace="~{fragments/footer :: footer}" />

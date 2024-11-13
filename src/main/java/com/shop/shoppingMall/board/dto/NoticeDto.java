@@ -17,6 +17,9 @@ public class NoticeDto {
     private String writer;
     private Date createTime;
 
+    // 기본 생성자 추가
+    public NoticeDto() {}
+
     public NoticeDto (NoticeEntity noticeEntity) {
         this.idx = noticeEntity.getIdx();
         this.title = noticeEntity.getTitle();
