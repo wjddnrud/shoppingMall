@@ -43,16 +43,13 @@ public class NoticeService {
      */
     @Transactional(readOnly = true)
     public NoticeDto findOne(Long idx, Model model) {
-        log.info("===== findOne ======");
-        log.info("===== idx : " + idx);
         NoticeEntity noticeEntity = noticeRepository.findById(idx).orElse(null);
-        log.info("===== noticeEntity : " + noticeEntity);
         NoticeDto noticeDto = null;
         if (noticeEntity != null) {
             noticeDto = new NoticeDto(noticeEntity);
+            noticeDto.setContent(noticeDto.getContent().replaceAll("\n", "<br>"));
         }
         model.addAttribute("noticeDto", noticeDto);
-        log.info("===== noticeDto : " + noticeDto);
         return noticeDto;
     }
 

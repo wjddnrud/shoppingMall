@@ -14,15 +14,15 @@
 <div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
 
 <div id="contents">
-    <div>
-        <span>공지사항</span>
-        <input type="text" placeholder="검색어 입력">
-        <p>
-            <input id="search" name="search" class="inputTypeText" placeholder="검색어 입력" value="" type="text">
-            <a href="#none" onclick="BOARD.form_submit('boardSearchForm');" class="search_btn"><img src="/static/image/ico_zoom.svg" alt="찾기">
-            </a>
-        </p>
-    </div>
+<!--    <div>-->
+<!--        <span>공지사항</span>-->
+<!--        <input type="text" placeholder="검색어 입력">-->
+<!--        <p>-->
+<!--            <input id="search" name="search" class="inputTypeText" placeholder="검색어 입력" value="" type="text">-->
+<!--            <a href="#none" onclick="BOARD.form_submit('boardSearchForm');" class="search_btn"><img src="/static/image/ico_zoom.svg" alt="찾기">-->
+<!--            </a>-->
+<!--        </p>-->
+<!--    </div>-->
     <div id="boardList">
         <table style="margin-left: auto; margin-right: auto; border: 1px solid orange; border-collapse: collapse;">
             <colgroup>
@@ -49,12 +49,12 @@
             </tbody>
             <tbody>
             <tr th:each="notice : ${noticeList}">
-                <td th:value="${notice.idx}">번호</td>
+                <td th:text="${notice.idx}">번호</td>
                 <td>
                     <a style="color: inherit; text-decoration: none;" th:text="${notice.title}" th:href="@{/board/notice/{idx} (idx=${notice.idx})}">제목</a>
                 </td>
                 <td th:text="${notice.writer}">작성자</td>
-                <td th:text="${notice.createTime}">작성일자</td>
+                <td th:text="${#dates.format(notice.createTime, 'yyyy-mm-dd')}">작성일자</td>
             </tr>
             </tbody>
         </table>
