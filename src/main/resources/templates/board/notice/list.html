@@ -50,7 +50,9 @@
             <tbody>
             <tr th:each="notice : ${noticeList}">
                 <td th:value="${notice.idx}">번호</td>
-                <td th:text="${notice.title}">제목</td>
+                <td>
+                    <a style="color: inherit; text-decoration: none;" th:text="${notice.title}" th:href="@{/board/notice/{idx} (idx=${notice.idx})}">제목</a>
+                </td>
                 <td th:text="${notice.writer}">작성자</td>
                 <td th:text="${notice.createTime}">작성일자</td>
             </tr>
@@ -58,7 +60,9 @@
         </table>
     </div>
 </div>
-</section>
+<div class="text-center">
+    <button type="button" class="btn btn-secondary" th:href="@{/board/notice/form}">등록</button>
+</div>
 
 <div th:replace="~{fragments/footer :: footer}" />
 

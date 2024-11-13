@@ -39,12 +39,15 @@
 <!--                </a>-->
             </div>
             <div class="row">
-                <div class="col-6" style="text-align: right;">
-                    <button type="button" class="btn btn-info" style="color: white;">수정</button>
+                <div class="col12" style="text-align: center;">
+                    <button type="button" onclick="history.back();" class="btn btn-secondary" style="color: white;">목록</button>
                 </div>
-                <div class="col-6" style="text-align: left;">
-                    <button type="submit" th:href="@{/board/notice/{idx} (idx=${noticeDto.idx})}" class="btn btn-danger" style="color: white;">삭제</button>
-                </div>
+<!--                <div class="col-4" style="text-align: right;">-->
+<!--                    <button type="button" class="btn btn-info" style="color: white;">수정</button>-->
+<!--                </div>-->
+<!--                <div class="col-4" style="text-align: left;">-->
+<!--                    <button type="submit" th:href="@{/board/notice/{idx} (idx=${noticeDto.idx})}" class="btn btn-danger" style="color: white;">삭제</button>-->
+<!--                </div>-->
             </div>
         </div>
     </div>

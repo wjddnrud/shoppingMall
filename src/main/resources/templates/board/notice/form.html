@@ -13,13 +13,28 @@
 
 <div th:replace="~{fragments/bodyHeader :: bodyHeader}" />
 
-<div id="contents">
-    <form>
-        <div>
-
+<form id="noticeForm" method="post">
+    <div id="contents">
+        <div class="row">
+            <div class="col">
+                <span>제목 : </span>
+            </div>
+            <div class="col">
+                <input type="text" placeholder="제목을 입력해주세요.(최대 10글자)" maxlength="10">
+            </div>
         </div>
-    </form>
-</div>
+        <div class="row">
+            <div class="col">
+                <textarea placeholder="내용을 입력해주세요.(최대 30글자)" maxlength="30" />
+            </div>
+        </div>
+    </div>
+    <div>
+        <button type="submit">등록</button>
+        <button type="reset">초기화</button>
+        <button type="button" onclick="history.back();">취소</button>
+    </div>
+</form>
 </section>
 
 <div th:replace="~{fragments/footer :: footer}" />

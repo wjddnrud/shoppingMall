@@ -47,7 +47,7 @@ public class NoticeController {
      */
     @GetMapping("/form")
     public String noticeForm() {
-        return "";
+        return "/board/notice/form";
     }
 
 
