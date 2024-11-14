@@ -5,13 +5,14 @@ import com.shop.shoppingMall.board.entity.NoticeEntity;
 import com.shop.shoppingMall.board.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,12 +28,28 @@ public class NoticeService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<NoticeDto> list(Model model) {
-        log.info("===== list ======");
-        List<NoticeEntity> noticeEntityList = noticeRepository.findAll();
-        List<NoticeDto> noticeDtoList = noticeEntityList.stream().map(NoticeDto::new).collect(Collectors.toList());
+    public Page<NoticeDto> list(Model model, Pageable pageable) {
+        // 페이지 고정값 설정
+        int pageSize = 10;
+        int pageNumber = pageable.getPageNumber();
+        Pageable fixedPageable = PageRequest.of(pageNumber, pageSize);
+
+        // 공지사항 글 리스트 조회
+        Page<NoticeEntity> noticeEntityList = noticeRepository.findAll(fixedPageable);
+        Page<NoticeDto> noticeDtoList = noticeEntityList.map(NoticeDto::new);
+
+        // 조회된 리스트 정보로 페이지 정보 세팅
+        int totalPages = noticeDtoList.getTotalPages();
+        int currentPage = noticeDtoList.getNumber();
+        int displayPageSize = 5;
+        int startPage = Math.max(0, currentPage / displayPageSize * displayPageSize);
+        int endPage = Math.min(startPage + displayPageSize, totalPages);
+
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("currentPage", currentPage);
         model.addAttribute("noticeList", noticeDtoList);
-        log.info("===== noticeDtoList  : " + noticeDtoList);
+
         return noticeDtoList;
     }
 

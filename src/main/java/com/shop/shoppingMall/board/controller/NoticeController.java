@@ -4,6 +4,7 @@ import com.shop.shoppingMall.board.dto.NoticeDto;
 import com.shop.shoppingMall.board.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,9 @@ public class NoticeController {
      * @return
      */
     @GetMapping
-    public String noticeList(Model model) {
+    public String noticeList(Model model, Pageable pageable) {
         log.info("==================BoardController==================");
-        noticeService.list(model);
+        noticeService.list(model, pageable);
         return "/board/notice/list";
     }
 

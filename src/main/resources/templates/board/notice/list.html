@@ -23,13 +23,13 @@
 <!--            </a>-->
 <!--        </p>-->
 <!--    </div>-->
-    <div id="boardList">
-        <table style="margin-left: auto; margin-right: auto; border: 1px solid orange; border-collapse: collapse;">
+    <div class="pt-5" id="boardList">
+        <table class="styled-table" style="width: 80%;">
             <colgroup>
-                <col style="width: 150px;">
-                <col style="width: 150px;">
-                <col style="width: 150px;">
-                <col style="width: 150px;">
+                <col style="width: 50px;">
+                <col style="width: 250px;">
+                <col style="width: 50px;">
+                <col style="width: 100px;">
             </colgroup>
             <thead>
             <tr>
@@ -39,14 +39,6 @@
                 <th>작성일자</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>공지</td>
-                <td>적립금 소멸기준 공지사항</td>
-                <td>정우경</td>
-                <td>2024.11.03</td>
-            </tr>
-            </tbody>
             <tbody>
             <tr th:each="notice : ${noticeList}">
                 <td th:text="${notice.idx}">번호</td>
@@ -59,8 +51,26 @@
             </tbody>
         </table>
     </div>
+
+    <div class="p-3" th:if="${noticeList.hasContent()}" style="text-align: center;">
+        <div>
+            <!-- 이전 페이지 링크 -->
+            <a th:href="@{/board/notice(page=${noticeList.number - 1})}" th:if="${noticeList.hasPrevious()}">Previous</a>
+
+            <!-- 페이지 번호 링크 -->
+            <span th:each="pageNum : ${#numbers.sequence(startPage + 1, endPage)}">
+            <a th:href="@{/board/notice(page=${pageNum - 1})}"
+               th:text="${pageNum}"
+               th:classappend="${pageNum - 1 == noticeList.number} ? 'active' : ''" class="page-link">1</a>
+            </span>
+
+            <!-- 다음 페이지 링크 -->
+            <a th:href="@{/board/notice(page=${noticeList.number + 1})}" th:if="${noticeList.hasNext()}">Next</a>
+        </div>
+    </div>
+
 </div>
-<div class="text-center">
+<div class="text-center pb-5">
     <button type="button" class="btn btn-secondary" th:onclick="|location.href='@{/board/notice/form}'|">등록</button>
 </div>
 
