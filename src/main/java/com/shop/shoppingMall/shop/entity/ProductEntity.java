@@ -3,6 +3,7 @@ package com.shop.shoppingMall.shop.entity;
 import com.shop.shoppingMall.exception.NotEnoughStockException;
 import com.shop.shoppingMall.shop.dto.ProductDto;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "product")
 @Getter
+@Data
 public class ProductEntity {
 
     @Id
